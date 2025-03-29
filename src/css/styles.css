@@ -9,6 +9,19 @@
   margin-bottom: 32px;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 input{
   width: 272px;
   height: 40px;
@@ -50,6 +63,11 @@ button:hover {
   background: #6c8cff;
 }
 
+button[type="button"]{
+  display: block;
+  width: 125px;
+  margin: 32px auto;
+}
 .gallery{
   display: flex;
   flex-wrap: wrap;

@@ -8,19 +8,18 @@ export function clearGallery() {
     gallery.innerHTML = "";
 };
 
-export function createLoader(){
+export function showLoader(){
     const loader = document.querySelector(".loader");
     loader.classList.add("load")
 };
 
-export function deleteLoader(){
+export function hideLoader(){
     const loader = document.querySelector(".loader");
     loader.classList.remove("load")
 };
-
-export default function addImages(data) {
+let gallery_images;
+export default function addImages(data, page) {
     const gallery = document.querySelector(".gallery");
-    gallery.innerHTML = "";
     const markup = data
         .map((el) =>
             `<li class="gallery-item">
@@ -55,8 +54,21 @@ export default function addImages(data) {
             </li >`
         )
         .join("");
-
-    gallery.insertAdjacentHTML("afterbegin", markup)
-    let gallery_images = new SimpleLightbox('.gallery a');
+    
+    if (page > 1) {
+        gallery_images.destroy();
+    }
+    gallery.insertAdjacentHTML("beforeend", markup)
+    gallery_images = new SimpleLightbox('.gallery a');
     gallery_images.refresh();
 } 
+
+export function showLoadMoreButton() {
+    const loadMoreButton = document.querySelector("button[type='button']");
+    loadMoreButton.classList.remove("visually-hidden");
+}
+
+export function hideLoadMoreButton() {
+    const loadMoreButton = document.querySelector("button[type='button']");
+    loadMoreButton.classList.add("visually-hidden");
+}
